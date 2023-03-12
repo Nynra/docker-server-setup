@@ -1,3 +1,4 @@
+version: '1'
 services:
     truecommand:
         image: ixsystems/truecommand:latest
