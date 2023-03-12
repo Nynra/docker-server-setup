@@ -1,0 +1,13 @@
+services:
+    truecommand:
+        image: ixsystems/truecommand:latest
+        container_name: truecommand
+        restart: always
+        ports:
+            - 6080:80
+            - 6443:443
+        volumes:
+        - 'truecommand_data:/data'
+
+volumes:
+    truecommand_data:
