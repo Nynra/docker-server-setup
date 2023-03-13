@@ -1,6 +1,9 @@
 #!/bin/bash
 # This file contains the commands to install Docker on Debian buster
 # source: https://docs.docker.com/engine/install/ubuntu/
+# Enable apt
+chmod +x /bin/apt*
+
 # Remove the existing installation
 sudo apt-get remove docker docker-engine docker.io containerd runc
 
