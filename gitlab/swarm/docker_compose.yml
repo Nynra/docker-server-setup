@@ -2,18 +2,22 @@ version: "3.6"
 services:
 
   gitlab:
-    image: gitlab/gitlab-ee:latest
+    image: gitlab/gitlab-ce:latest
     ports:
-      - "22:22"
-      - "80:80"
-      - "443:443"
+      - "7022:22"
+      - "7080:80"
+      - "7443:443"
+      - "8989:8989"
     volumes:
       - gitlab_stack_data:/var/opt/gitlab
       - gitlab_stack_logs:/var/log/gitlab
       - gitlab_stack_config:/etc/gitlab
     shm_size: '256m'
     environment:
-      GITLAB_OMNIBUS_CONFIG: "from_file('/omnibus_config.rb')"
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://structam.com:8989'
+        gitlab_rails['initial_root_password'] = $GITLAB_ROOT_PASSWORD
+        gitlab_rails['gitlab_shell_ssh_port'] = 7022
     configs:
       - source: gitlab
         target: /omnibus_config.rb
